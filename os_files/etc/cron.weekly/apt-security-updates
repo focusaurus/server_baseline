@@ -1,0 +1,7 @@
+#See https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_cron_and_aptitude
+NAME=apt-security-updates
+LOG="/var/log/${NAME}"
+echo "----- ${NAME} run: $(date) -----" >> "${LOG}"
+aptitude update >> "${LOG}"
+aptitude safe-upgrade -o Aptitude::Delete-Unused=false --assume-yes --target-release `lsb_release -cs`-security >> "${LOG}"
+echo "Security updates (if any) installed. ${NAME} run completed"
