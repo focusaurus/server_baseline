@@ -8,5 +8,5 @@ link() {
 }
 
 for FILE in $(find "./os_files" -type f | cut -d / -f 3-); do
-    echo link "${DIR}/os_files/${FILE}" "/${FILE}"
+    link "${DIR}/os_files/${FILE}" "/${FILE}"
 done
