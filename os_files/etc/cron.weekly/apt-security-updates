@@ -3,6 +3,7 @@
 NAME=apt-security-updates
 LOG="/var/log/${NAME}"
 echo "----- ${NAME} run: $(date) -----" >> "${LOG}"
+export DEBIAN_FRONTEND=noninteractive
 apt-get install --quiet --yes aptitude >/dev/null 2>&1
 aptitude --quiet update >> "${LOG}"
 aptitude --quiet safe-upgrade -o Aptitude::Delete-Unused=false --assume-yes --target-release `lsb_release -cs`-security >> "${LOG}"
